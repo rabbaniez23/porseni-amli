@@ -1,11 +1,17 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { ArrowRight, Star, Sparkles, Award, Play } from "lucide-react";
 import { gsap } from "gsap";
 
-export function HeroSection() {
+interface HeroSectionProps {
+  isPageLoading: boolean;
+}
+
+export function HeroSection({ isPageLoading }: HeroSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [part1Text, setPart1Text] = useState("");
+  const [part2Text, setPart2Text] = useState("");
 
   const handleScroll = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -22,22 +28,61 @@ export function HeroSection() {
     { text: "Vocal Group", color: "bg-brutal-yellow text-brutal-black", rotate: "rotate-6 md:rotate-2", icon: <Sparkles className="w-4 h-4" /> },
   ];
 
+  // Pure React Typewriter Effect (synchronized with loading screen completion)
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Timeline for entrance animations using bulletproof fromTo
-      const tl = gsap.timeline({ defaults: { ease: "back.out(1.5)", duration: 0.8 } });
+    if (isPageLoading) {
+      setPart1Text("");
+      setPart2Text("");
+      return;
+    }
 
-      tl.fromTo(".hero-title", { y: 60, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1 })
-        .fromTo(".hero-subtitle", { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.5")
-        .fromTo(".hero-desc", { y: 40, opacity: 0 }, { y: 0, opacity: 1, ease: "power2.out" }, "-=0.4")
-        .fromTo(".hero-badge-grid > div", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.1 }, "-=0.4")
-        .fromTo(".hero-ctas button", { y: 30, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.15 }, "-=0.3")
-        .fromTo(".hero-art-frame", { scale: 0.8, rotate: -15, opacity: 0 }, { scale: 1, rotate: -2, opacity: 1, duration: 1, ease: "elastic.out(1, 0.75)" }, "-=0.6")
-        .fromTo(".hero-sticker", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.1, ease: "back.out(2)" }, "-=0.8");
+    const target1 = "PORSENI";
+    const target2 = "AMLI 2026";
+    let i = 0;
+    let typePart2: NodeJS.Timeout;
+
+    const typePart1 = setInterval(() => {
+      if (i < target1.length) {
+        setPart1Text(target1.substring(0, i + 1));
+        i++;
+      } else {
+        clearInterval(typePart1);
+        
+        let j = 0;
+        typePart2 = setInterval(() => {
+          if (j < target2.length) {
+            setPart2Text(target2.substring(0, j + 1));
+            j++;
+          } else {
+            clearInterval(typePart2);
+          }
+        }, 70);
+      }
+    }, 70);
+
+    return () => {
+      clearInterval(typePart1);
+      if (typePart2) clearInterval(typePart2);
+    };
+  }, [isPageLoading]);
+
+  // GSAP for elements other than text typing (synchronized with loading screen completion)
+  useEffect(() => {
+    if (isPageLoading) return;
+
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.6 } });
+
+      tl.fromTo(".hero-subtitle", { y: 20, opacity: 0 }, { y: 0, opacity: 1, ease: "back.out(1.5)" })
+        .fromTo(".hero-desc", { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.3")
+        .fromTo(".hero-badge-grid > div", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.1, ease: "back.out(1.5)" }, "-=0.3")
+        .fromTo(".hero-ctas button", { y: 30, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.15, ease: "back.out(1.5)" }, "-=0.2")
+        .fromTo(".hero-art-frame", { scale: 0.8, rotate: -15, opacity: 0 }, { scale: 1, rotate: -2, opacity: 1, duration: 1, ease: "elastic.out(1, 0.75)" }, "-=0.5")
+        .fromTo(".hero-sticker", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.1, ease: "back.out(2)" }, "-=0.7");
     }, containerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isPageLoading]);
 
   return (
     <section
@@ -55,10 +100,10 @@ export function HeroSection() {
           <div className="lg:col-span-7 space-y-8 text-left">
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="hero-title text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none text-brutal-black relative">
-                PORSENI
-                <span className="block text-brutal-blue drop-shadow-[3px_3px_0_#111111] mt-2">
-                  AMLI 2026
+              <h1 className="hero-title text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none text-brutal-black relative min-h-[90px] sm:min-h-[140px] lg:min-h-[160px] select-none">
+                <span className="hero-part1">{part1Text}</span>
+                <span className="hero-part2 text-brutal-blue block drop-shadow-[3px_3px_0_#111111] mt-2">
+                  {part2Text}
                 </span>
               </h1>
               <h2 className="hero-subtitle text-xs sm:text-sm lg:text-base font-black text-brutal-pink uppercase mt-[6px] block">

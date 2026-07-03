@@ -42,7 +42,7 @@ export default function Page() {
       }`}>
         <Navbar />
         <main className="flex-grow">
-          <HeroSection />
+          <HeroSection isPageLoading={isLoading} />
           <InfoStrip />
           <AboutSection />
           <CompetitionOverview />
