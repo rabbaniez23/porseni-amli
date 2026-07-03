@@ -1,19 +1,43 @@
-import { Button } from "@workspace/ui/components/button"
+"use client";
+
+import { useState } from "react";
+import { Navbar } from "@/components/navbar";
+import { HeroSection } from "@/components/hero-section";
+import { InfoStrip } from "@/components/info-strip";
+import { AboutSection } from "@/components/about-section";
+import { CompetitionOverview } from "@/components/competition-overview";
+import { CompetitionDetail } from "@/components/competition-detail";
+import { TimelineSection } from "@/components/timeline-section";
+import { HowToRegisterSection } from "@/components/how-to-register";
+import { FAQAccordion } from "@/components/faq-accordion";
+import { FinalCTA } from "@/components/final-cta";
+import { Footer } from "@/components/footer";
+import { LoadingScreen } from "@/components/loading-screen";
 
 export default function Page() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="text-muted-foreground font-mono text-xs">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
+    <>
+      <LoadingScreen onComplete={() => setIsLoading(false)} />
+      
+      <div className={`flex flex-col min-h-screen transition-opacity duration-500 ${
+        isLoading ? "opacity-0" : "opacity-100"
+      }`}>
+        <Navbar />
+        <main className="flex-grow">
+          <HeroSection />
+          <InfoStrip />
+          <AboutSection />
+          <CompetitionOverview />
+          <CompetitionDetail />
+          <TimelineSection />
+          <HowToRegisterSection />
+          <FAQAccordion />
+          <FinalCTA />
+        </main>
+        <Footer />
       </div>
-    </div>
-  )
+    </>
+  );
 }
