@@ -1,15 +1,13 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight, Star, Sparkles, Award, Play } from "lucide-react";
-import { gsap } from "gsap";
 
 interface HeroSectionProps {
   isPageLoading: boolean;
 }
 
 export function HeroSection({ isPageLoading }: HeroSectionProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
   const [part1Text, setPart1Text] = useState("");
   const [part2Text, setPart2Text] = useState("");
 
@@ -66,27 +64,8 @@ export function HeroSection({ isPageLoading }: HeroSectionProps) {
     };
   }, [isPageLoading]);
 
-  // GSAP for elements other than text typing (synchronized with loading screen completion)
-  useEffect(() => {
-    if (isPageLoading) return;
-
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power2.out", duration: 0.6 } });
-
-      tl.fromTo(".hero-subtitle", { y: 20, opacity: 0 }, { y: 0, opacity: 1, ease: "back.out(1.5)" })
-        .fromTo(".hero-desc", { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.3")
-        .fromTo(".hero-badge-grid > div", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.1, ease: "back.out(1.5)" }, "-=0.3")
-        .fromTo(".hero-ctas button", { y: 30, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.15, ease: "back.out(1.5)" }, "-=0.2")
-        .fromTo(".hero-art-frame", { scale: 0.8, rotate: -15, opacity: 0 }, { scale: 1, rotate: -2, opacity: 1, duration: 1, ease: "elastic.out(1, 0.75)" }, "-=0.5")
-        .fromTo(".hero-sticker", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.1, ease: "back.out(2)" }, "-=0.7");
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, [isPageLoading]);
-
   return (
     <section
-      ref={containerRef}
       id="home"
       className="relative pt-10 pb-20 border-b-4 border-brutal-black bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:32px_32px] bg-opacity-[0.04] overflow-hidden"
     >
@@ -153,11 +132,11 @@ export function HeroSection({ isPageLoading }: HeroSectionProps) {
           {/* Sticker Visuals / Right Side */}
           <div className="lg:col-span-5 relative h-[450px] flex items-center justify-center">
             {/* Neo-Brutalist Art Frame */}
-            <div className="hero-art-frame border-4 border-brutal-black bg-white p-4 shadow-brutal rotate-[-2deg] max-w-sm w-full relative z-10">
+            <div className="hero-art-frame border-4 border-brutal-black bg-white p-4 shadow-brutal rotate-[-2deg] max-w-sm w-full relative z-10 hover:rotate-0 transition-transform duration-300">
               <div className="relative border-2 border-brutal-black overflow-hidden h-64 bg-neutral-100">
                 <img
-                  src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop"
-                  alt="AMLI Art & Science"
+                  src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?q=80&w=600&auto=format&fit=crop"
+                  alt="Tari Tradisional PORSENI"
                   className="w-full h-full object-cover"
                 />
                 {/* Sticker badge overlay */}
@@ -166,7 +145,7 @@ export function HeroSection({ isPageLoading }: HeroSectionProps) {
                 </div>
               </div>
               <div className="mt-4 font-black text-xs uppercase text-neutral-800 flex justify-between items-center">
-                <span>COMPETITION ARTWORK</span>
+                <span>TARI TRADISIONAL ARTWORK</span>
                 <span className="text-brutal-pink">#01</span>
               </div>
             </div>

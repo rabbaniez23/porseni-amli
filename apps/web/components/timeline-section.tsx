@@ -1,13 +1,8 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import { Calendar, AlertCircle } from "lucide-react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function TimelineSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   const events = [
     {
       date: "Juni 2026",
@@ -82,104 +77,15 @@ export function TimelineSection() {
     }
   ];
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Bulletproof fromTo animations
-      gsap.fromTo(".timeline-header", 
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".timeline-header",
-            start: "top 85%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-
-      // Animate center vertical lines with scrub
-      gsap.fromTo(
-        ".timeline-center-line-desktop",
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          transformOrigin: "top center",
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".timeline-items-wrapper",
-            start: "top 70%",
-            end: "bottom 80%",
-            scrub: true
-          }
-        }
-      );
-
-      gsap.fromTo(
-        ".timeline-center-line-mobile",
-        { scaleY: 0 },
-        {
-          scaleY: 1,
-          transformOrigin: "top center",
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".timeline-items-wrapper",
-            start: "top 70%",
-            end: "bottom 80%",
-            scrub: true
-          }
-        }
-      );
-
-      // Card reveals - slide up and scale
-      gsap.utils.toArray(".timeline-card-wrapper").forEach((card: any) => {
-        gsap.fromTo(card, 
-          { y: 50, opacity: 0, scale: 0.95 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.7,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              toggleActions: "play none none none"
-            }
-          }
-        );
-      });
-
-      // Warning note reveal
-      gsap.fromTo(".timeline-warning-note", 
-        { scale: 0.9, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.8,
-          ease: "back.out(1.2)",
-          scrollTrigger: {
-            trigger: ".timeline-warning-note",
-            start: "top 90%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={containerRef} id="timeline" className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
+    <section id="timeline" className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="timeline-header text-left space-y-6 mb-16 max-w-3xl">
+        <div
+          data-aos="fade-up"
+          className="timeline-header text-left space-y-6 mb-16 max-w-3xl"
+        >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-brutal-black">
             Timeline PORSENI AMLI 2026
           </h2>
@@ -191,9 +97,9 @@ export function TimelineSection() {
 
         {/* Timeline Layout */}
         <div className="timeline-items-wrapper relative">
-          {/* Vertical line on larger screen - Animated */}
-          <div className="timeline-center-line-desktop absolute left-4 md:left-1/2 top-0 bottom-0 w-1.5 bg-brutal-black -translate-x-1/2 hidden md:block" />
-          <div className="timeline-center-line-mobile absolute left-6 top-0 bottom-0 w-1.5 bg-brutal-black md:hidden" />
+          {/* Vertical line on larger screen - static, light CSS */}
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1.5 bg-brutal-black -translate-x-1/2 hidden md:block" />
+          <div className="absolute left-6 top-0 bottom-0 w-1.5 bg-brutal-black md:hidden" />
 
           <div className="space-y-12">
             {events.map((event, idx) => {
@@ -216,6 +122,7 @@ export function TimelineSection() {
                   {/* Card Block */}
                   <div className="timeline-card-wrapper w-full md:w-1/2 pl-12 md:pl-0 md:px-8">
                     <div
+                      data-aos={isEven ? "fade-left" : "fade-right"}
                       className={`${event.color} border-4 border-brutal-black shadow-brutal p-6 md:p-8 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg hover:-rotate-1 transition-all text-left relative`}
                     >
                       {/* Date Badge */}
@@ -244,7 +151,10 @@ export function TimelineSection() {
         </div>
 
         {/* Note Warning Box */}
-        <div className="timeline-warning-note mt-16 bg-red-100 border-3 border-brutal-black p-6 shadow-brutal flex gap-4 items-center max-w-2xl mx-auto rotate-[0.5deg]">
+        <div
+          data-aos="zoom-in"
+          className="timeline-warning-note mt-16 bg-red-100 border-3 border-brutal-black p-6 shadow-brutal flex gap-4 items-center max-w-2xl mx-auto rotate-[0.5deg]"
+        >
           <AlertCircle className="w-8 h-8 text-red-600 shrink-0" />
           <p className="font-extrabold text-sm sm:text-base text-left text-neutral-800">
             Catatan: Jadwal dapat menyesuaikan keputusan panitia dan hasil technical meeting. Harap pantau terus pembaruan informasi dari panitia.

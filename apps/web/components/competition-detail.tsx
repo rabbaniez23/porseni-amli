@@ -1,14 +1,12 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { registrationLinks } from "./competition-overview";
 import { Film, Gamepad, Award, Music, ShieldAlert, Award as Trophy, ArrowUpRight } from "lucide-react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function CompetitionDetail() {
   const [activeTab, setActiveTab] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const tabs = [
     {
@@ -171,60 +169,22 @@ export function CompetitionDetail() {
     }
   ];
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Bulletproof fromTo animations
-      gsap.fromTo(".detail-header", 
-        { y: 30, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".detail-header",
-            start: "top 85%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-
-      gsap.fromTo(".detail-tabs-bar button", 
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.1,
-          duration: 0.6,
-          ease: "back.out(1.2)",
-          scrollTrigger: {
-            trigger: ".detail-tabs-bar",
-            start: "top 90%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  // Animation on tab content change
-  useEffect(() => {
-    gsap.fromTo(
-      ".tab-content-panel",
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
-    );
-  }, [activeTab]);
+  const handleTabChange = (idx: number) => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      setActiveTab(idx);
+      setIsAnimating(false);
+    }, 150); // Fast fade transition duration
+  };
 
   return (
-    <section ref={containerRef} className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
+    <section className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Title */}
-        <div className="detail-header text-left space-y-6 mb-12">
+        <div
+          data-aos="fade-up"
+          className="detail-header text-left space-y-6 mb-12"
+        >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-brutal-black">
             Detail Ketentuan Lomba
           </h2>
@@ -232,14 +192,18 @@ export function CompetitionDetail() {
         </div>
 
         {/* Tab Headers */}
-        <div className="detail-tabs-bar flex flex-wrap border-b-4 border-brutal-black -mb-[4px] relative z-10">
+        <div
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="detail-tabs-bar flex flex-wrap border-b-4 border-brutal-black -mb-[4px] relative z-10"
+        >
           {tabs.map((tab, idx) => {
             const isActive = activeTab === idx;
             return (
               <button
                 key={tab.id}
                 id={`${tab.id}-detail`}
-                onClick={() => setActiveTab(idx)}
+                onClick={() => handleTabChange(idx)}
                 className={`flex items-center gap-2 px-6 py-4 font-black uppercase text-sm border-t-4 border-x-4 border-brutal-black mr-2 transition-all outline-none ${
                   isActive
                     ? tab.activeColor + " translate-y-[4px]"
@@ -258,7 +222,11 @@ export function CompetitionDetail() {
           const content = tabs[activeTab]?.content;
           if (!content) return null;
           return (
-            <div className="tab-content-panel bg-white border-4 border-brutal-black shadow-brutal p-8 md:p-12 text-left transition-all">
+            <div
+              className={`tab-content-panel bg-white border-4 border-brutal-black shadow-brutal p-8 md:p-12 text-left transition-all duration-300 transform ${
+                isAnimating ? "opacity-0 translate-y-2 scale-[0.98]" : "opacity-100 translate-y-0 scale-100"
+              }`}
+            >
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
                 {/* Left Content Area */}

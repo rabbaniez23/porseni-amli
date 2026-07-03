@@ -1,9 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import { Film, Gamepad, Award, Music, ArrowUpRight, HelpCircle } from "lucide-react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export const registrationLinks = {
   scienceShortMovie: "https://forms.gle/ISI_LINK_GOOGLE_FORM_SCIENCE_SHORT_MOVIE",
@@ -13,8 +10,6 @@ export const registrationLinks = {
 };
 
 export function CompetitionOverview() {
-  const containerRef = useRef<HTMLDivElement>(null);
-
   const competitions = [
     {
       id: "science-short-movie",
@@ -30,6 +25,7 @@ export function CompetitionOverview() {
         { label: "Tema", val: "Fenomena/konsep MIPA dalam kehidupan" },
       ],
       link: registrationLinks.scienceShortMovie,
+      delay: "0"
     },
     {
       id: "mobile-legend",
@@ -45,6 +41,7 @@ export function CompetitionOverview() {
         { label: "Match", val: "BO3, Grand Final BO5" },
       ],
       link: registrationLinks.mobileLegend,
+      delay: "150"
     },
     {
       id: "tari-tradisional",
@@ -60,6 +57,7 @@ export function CompetitionOverview() {
         { label: "Ketentuan", val: "Tari tradisional Indonesia" },
       ],
       link: registrationLinks.tariTradisional,
+      delay: "300"
     },
     {
       id: "vocal-group",
@@ -75,6 +73,7 @@ export function CompetitionOverview() {
         { label: "Repertoar", val: "Lagu wajib & pilihan" },
       ],
       link: registrationLinks.vocalGroup,
+      delay: "450"
     },
   ];
 
@@ -85,51 +84,14 @@ export function CompetitionOverview() {
     }
   };
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Bulletproof fromTo animations
-      gsap.fromTo(".overview-header", 
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".overview-header",
-            start: "top 85%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-
-      gsap.fromTo(".overview-card", 
-        { y: 80, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.2,
-          duration: 0.8,
-          ease: "back.out(1.2)",
-          scrollTrigger: {
-            trigger: ".overview-card-grid",
-            start: "top 80%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={containerRef} id="lomba" className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
+    <section id="lomba" className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="overview-header text-left max-w-3xl space-y-6 mb-16">
+        <div
+          data-aos="fade-up"
+          className="overview-header text-left max-w-3xl space-y-6 mb-16"
+        >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-brutal-black">
             Pilih Cabang Lomba
           </h2>
@@ -144,6 +106,8 @@ export function CompetitionOverview() {
           {competitions.map((comp, idx) => (
             <div
               key={idx}
+              data-aos="fade-up"
+              data-aos-delay={comp.delay}
               className={`overview-card ${comp.color} border-4 border-brutal-black shadow-brutal hover:translate-x-[-4px] hover:translate-y-[-4px] hover:shadow-brutal-lg hover:rotate-1 transition-all p-8 flex flex-col justify-between text-left`}
             >
               {/* Card Top */}

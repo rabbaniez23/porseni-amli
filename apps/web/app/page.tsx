@@ -13,23 +13,20 @@ import { FAQAccordion } from "@/components/faq-accordion";
 import { FinalCTA } from "@/components/final-cta";
 import { Footer } from "@/components/footer";
 import { LoadingScreen } from "@/components/loading-screen";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!isLoading) {
-      // Recalculate ScrollTrigger positions after page becomes visible
-      const timer = setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 600); // 500ms transition duration + 100ms safety
-      return () => clearTimeout(timer);
+      // Initialize AOS for lightweight CSS scroll animations
+      AOS.init({
+        duration: 800,
+        once: false,
+        easing: "ease-out-back",
+      });
     }
   }, [isLoading]);
 

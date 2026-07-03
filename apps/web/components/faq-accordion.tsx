@@ -1,13 +1,10 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const faqs = [
     {
@@ -40,52 +37,15 @@ export function FAQAccordion() {
     }
   };
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      // Bulletproof fromTo animations
-      gsap.fromTo(".faq-header", 
-        { scale: 0.95, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".faq-header",
-            start: "top 85%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-
-      gsap.fromTo(".faq-item", 
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.1,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: ".faq-list",
-            start: "top 80%",
-            toggleActions: "play none none none"
-          }
-        }
-      );
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section ref={containerRef} id="faq" className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
+    <section id="faq" className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
         {/* Header */}
-        <div className="faq-header text-center space-y-6 mb-16">
+        <div
+          data-aos="zoom-in"
+          className="faq-header text-center space-y-6 mb-16"
+        >
           <div className="inline-flex p-3 bg-brutal-yellow border-2 border-brutal-black shadow-brutal-sm rotate-3 mb-2">
             <HelpCircle className="w-8 h-8 text-brutal-black" />
           </div>
@@ -104,6 +64,8 @@ export function FAQAccordion() {
             return (
               <div
                 key={idx}
+                data-aos="fade-up"
+                data-aos-delay={idx * 80}
                 className="faq-item border-3 border-brutal-black bg-white shadow-brutal hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all"
               >
                 {/* Accordion Header */}
