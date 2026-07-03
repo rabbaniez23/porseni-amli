@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Gamepad, Play, Circle } from "lucide-react";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("#home");
 
   const navItems = [
     { label: "Beranda", href: "#home" },
@@ -16,6 +17,7 @@ export function Navbar() {
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    setActiveItem(href);
     setIsOpen(false);
     const element = document.querySelector(href);
     if (element) {
@@ -25,44 +27,68 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 bg-brutal-bg border-b-4 border-brutal-black font-sans">
+      {/* Decorative top border grid */}
+      <div className="h-1.5 w-full bg-[repeating-linear-gradient(45deg,#111111,#111111_10px,#FACC15_10px,#FACC15_20px)] border-b-2 border-brutal-black" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo & Badge */}
+          {/* Logo & Multiplayer Status indicator */}
           <div className="flex items-center gap-3">
             <a
               href="#home"
               onClick={(e) => handleScroll(e, "#home")}
-              className="text-xl sm:text-2xl font-extrabold tracking-tighter hover:text-brutal-blue transition-colors"
+              className="text-lg sm:text-xl md:text-2xl font-black tracking-tighter hover:text-brutal-blue transition-colors flex items-center gap-2 select-none"
             >
               PORSENI AMLI 2026
             </a>
-            <span className="hidden md:inline-block px-3 py-1 text-xs font-bold border-2 border-brutal-black bg-brutal-lime rotate-1 hover:rotate-0 transition-transform shadow-brutal-sm">
-              Hosted by FPMIPA UPI
-            </span>
+            
+            {/* Blinking Live indicator */}
+            <div className="flex items-center gap-1.5 px-2.5 py-1 border-2 border-brutal-black bg-white shadow-brutal-sm font-mono text-[9px] font-black select-none">
+              <span className="flex h-2 w-2 relative">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+              </span>
+              <span className="text-neutral-700">ONLINE</span>
+            </div>
           </div>
 
           {/* Desktop Menu */}
-          <nav className="hidden md:flex items-center gap-8 font-bold">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleScroll(e, item.href)}
-                className="text-brutal-black hover:text-brutal-pink transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[3px] after:bg-brutal-black hover:after:w-full after:transition-all"
-              >
-                {item.label}
-              </a>
-            ))}
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6 font-black text-sm select-none">
+            {navItems.map((item) => {
+              const isActive = activeItem === item.href;
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleScroll(e, item.href)}
+                  className={`px-3 py-1.5 border-2 border-transparent transition-all flex items-center gap-1.5 ${
+                    isActive
+                      ? "border-brutal-black bg-brutal-yellow text-brutal-black shadow-brutal-sm"
+                      : "text-brutal-black hover:border-brutal-black hover:bg-neutral-100"
+                  }`}
+                >
+                  {isActive && <span className="text-brutal-pink">▶</span>}
+                  {item.label}
+                </a>
+              );
+            })}
           </nav>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:block">
+          {/* Right Section: Game Status & CTA */}
+          <div className="hidden md:flex items-center gap-4 select-none">
+            {/* Level status indicator */}
+            <div className="hidden lg:flex items-center gap-1 px-3 py-1.5 border-2 border-brutal-black bg-brutal-purple text-white shadow-brutal-sm font-mono text-xs font-black rotate-[-1deg]">
+              <span>LVL: 01</span>
+            </div>
+
+            {/* Retro CTA Button */}
             <a
               href="#lomba"
               onClick={(e) => handleScroll(e, "#lomba")}
-              className="inline-block px-6 py-2.5 bg-brutal-blue text-white font-extrabold border-2 border-brutal-black shadow-brutal hover:shadow-brutal-sm hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
+              className="flex items-center gap-2 px-5 py-2.5 bg-brutal-blue text-white font-black text-sm border-2 border-brutal-black shadow-[4px_4px_0px_#111111] hover:shadow-[2px_2px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all"
             >
-              Daftar Sekarang
+              <Gamepad className="w-4 h-4 fill-white" />
+              PLAY NOW
             </a>
           </div>
 
@@ -83,22 +109,31 @@ export function Navbar() {
       {isOpen && (
         <div className="md:hidden border-t-4 border-brutal-black bg-brutal-bg font-bold animate-in fade-in slide-in-from-top duration-200">
           <div className="px-4 pt-4 pb-6 space-y-4">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleScroll(e, item.href)}
-                className="block px-3 py-2 text-lg border-2 border-brutal-black bg-white shadow-brutal-sm hover:bg-brutal-yellow active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeItem === item.href;
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleScroll(e, item.href)}
+                  className={`block px-3 py-2.5 text-lg border-2 border-brutal-black shadow-brutal-sm transition-all ${
+                    isActive ? "bg-brutal-yellow text-brutal-black" : "bg-white text-brutal-black"
+                  }`}
+                >
+                  <span className="flex items-center gap-2">
+                    {isActive ? <span className="text-brutal-pink">▶</span> : <span className="text-neutral-300">○</span>}
+                    {item.label}
+                  </span>
+                </a>
+              );
+            })}
             <a
               href="#lomba"
               onClick={(e) => handleScroll(e, "#lomba")}
-              className="block w-full text-center px-4 py-3 bg-brutal-blue text-white border-2 border-brutal-black shadow-brutal hover:shadow-brutal-sm active:translate-x-[4px] active:translate-y-[4px] transition-all"
+              className="flex items-center justify-center gap-2 w-full px-4 py-3.5 bg-brutal-blue text-white border-2 border-brutal-black shadow-[4px_4px_0px_#111111] hover:shadow-[2px_2px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all font-black text-sm"
             >
-              Daftar Sekarang
+              <Gamepad className="w-5 h-5 fill-white" />
+              PLAY NOW
             </a>
           </div>
         </div>

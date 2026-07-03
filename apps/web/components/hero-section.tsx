@@ -31,13 +31,13 @@ export function HeroSection() {
 
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none text-brutal-black relative">
+              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none text-brutal-black relative">
                 PORSENI
-                <span className="block text-brutal-blue drop-shadow-[3px_3px_0_#111111] mt-4">
+                <span className="block text-brutal-blue drop-shadow-[3px_3px_0_#111111] mt-2">
                   AMLI 2026
                 </span>
               </h1>
-              <h2 className="text-lg sm:text-xl font-black text-brutal-pink uppercase">
+              <h2 className="text-xs sm:text-sm lg:text-base font-black text-brutal-pink uppercase mt-[6px] block">
                 Satu Panggung, Satu Semangat MIPA.
               </h2>
             </div>
@@ -82,26 +82,38 @@ export function HeroSection() {
           </div>
 
           {/* Sticker Visuals / Right Side */}
-          <div className="lg:col-span-5 relative h-96 sm:h-[450px] flex items-center justify-center">
-            {/* Visual Center Badge */}
-            <div className="w-48 h-48 sm:w-64 sm:h-64 bg-brutal-yellow border-4 border-brutal-black rotate-12 shadow-brutal flex flex-col items-center justify-center p-6 text-center animate-pulse">
-              <span className="text-sm font-black uppercase text-neutral-800">AMLI 2026</span>
-              <span className="text-3xl sm:text-4xl font-extrabold my-2 text-brutal-black">ONLINE</span>
-              <span className="text-xs font-bold bg-white px-2 py-1 border border-brutal-black">COMPETITION</span>
+          <div className="lg:col-span-5 relative h-[450px] flex items-center justify-center">
+            {/* Neo-Brutalist Art Frame */}
+            <div className="border-4 border-brutal-black bg-white p-4 shadow-brutal rotate-[-2deg] max-w-sm w-full relative z-10">
+              <div className="relative border-2 border-brutal-black overflow-hidden h-64 bg-neutral-100">
+                <img
+                  src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop"
+                  alt="AMLI Art & Science"
+                  className="w-full h-full object-cover"
+                />
+                {/* Sticker badge overlay */}
+                <div className="absolute bottom-2 left-2 bg-brutal-yellow text-brutal-black border-2 border-brutal-black px-3 py-1 font-black text-[10px] uppercase shadow-brutal-sm">
+                  AMLI 2026 • ONLINE
+                </div>
+              </div>
+              <div className="mt-4 font-black text-xs uppercase text-neutral-800 flex justify-between items-center">
+                <span>COMPETITION ARTWORK</span>
+                <span className="text-brutal-pink">#01</span>
+              </div>
             </div>
 
             {/* Floating Stickers */}
             {stickers.map((sticker, idx) => {
               const positions = [
-                "absolute top-5 left-5 md:left-0",
-                "absolute top-8 right-5 md:right-0",
-                "absolute bottom-8 left-5 md:left-2",
-                "absolute bottom-5 right-5 md:right-2"
+                "absolute top-2 left-2 z-20",
+                "absolute top-6 right-2 z-20",
+                "absolute bottom-6 left-2 z-20",
+                "absolute bottom-2 right-2 z-20"
               ];
               return (
                 <div
                   key={idx}
-                  className={`${positions[idx]} ${sticker.color} ${sticker.rotate} p-4 border-3 border-brutal-black shadow-brutal flex items-center gap-2 font-black text-sm sm:text-base cursor-default hover:scale-105 transition-all`}
+                  className={`${positions[idx]} ${sticker.color} ${sticker.rotate} p-3 border-2 border-brutal-black shadow-brutal flex items-center gap-1.5 font-black text-xs cursor-default hover:scale-105 transition-all`}
                 >
                   {sticker.icon}
                   {sticker.text}
