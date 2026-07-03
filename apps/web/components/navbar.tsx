@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Menu, X, Gamepad, Play, Circle } from "lucide-react";
+import { gsap } from "gsap";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("#home");
+  const buttonRef = useRef<HTMLAnchorElement>(null);
 
   const navItems = [
     { label: "Beranda", href: "#home" },
@@ -24,6 +26,44 @@ export function Navbar() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  // Magnetic Button Effect using GSAP
+  useEffect(() => {
+    const button = buttonRef.current;
+    if (!button) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = button.getBoundingClientRect();
+      const x = e.clientX - (rect.left + rect.width / 2);
+      const y = e.clientY - (rect.top + rect.height / 2);
+
+      gsap.to(button, {
+        x: x * 0.45,
+        y: y * 0.45,
+        rotate: x * 0.05, // Subtle rotate adds jelly feel
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    };
+
+    const handleMouseLeave = () => {
+      gsap.to(button, {
+        x: 0,
+        y: 0,
+        rotate: 0,
+        duration: 0.6,
+        ease: "elastic.out(1, 0.3)",
+      });
+    };
+
+    button.addEventListener("mousemove", handleMouseMove);
+    button.addEventListener("mouseleave", handleMouseLeave);
+
+    return () => {
+      button.removeEventListener("mousemove", handleMouseMove);
+      button.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-brutal-bg border-b-4 border-brutal-black font-sans">
@@ -81,11 +121,12 @@ export function Navbar() {
               <span>LVL: 01</span>
             </div>
 
-            {/* Retro CTA Button */}
+            {/* Retro CTA Button (Magnetic via GSAP) */}
             <a
+              ref={buttonRef}
               href="#lomba"
               onClick={(e) => handleScroll(e, "#lomba")}
-              className="flex items-center gap-2 px-5 py-2.5 bg-brutal-blue text-white font-black text-sm border-2 border-brutal-black shadow-[4px_4px_0px_#111111] hover:shadow-[2px_2px_0px_#111111] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-[4px] active:translate-y-[4px] transition-all"
+              className="flex items-center gap-2 px-5 py-2.5 bg-brutal-blue text-white font-black text-sm border-2 border-brutal-black shadow-[4px_4px_0px_#111111] hover:shadow-[2px_2px_0px_#111111] active:shadow-none transition-shadow duration-150 inline-block cursor-pointer"
             >
               <Gamepad className="w-4 h-4 fill-white" />
               PLAY NOW
