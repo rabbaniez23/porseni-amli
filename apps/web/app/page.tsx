@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/hero-section";
 import { InfoStrip } from "@/components/info-strip";
@@ -13,9 +13,25 @@ import { FAQAccordion } from "@/components/faq-accordion";
 import { FinalCTA } from "@/components/final-cta";
 import { Footer } from "@/components/footer";
 import { LoadingScreen } from "@/components/loading-screen";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function Page() {
   const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (!isLoading) {
+      // Recalculate ScrollTrigger positions after page becomes visible
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 600); // 500ms transition duration + 100ms safety
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   return (
     <>

@@ -1,8 +1,13 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { CheckSquare, ShieldCheck } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function HowToRegisterSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const steps = [
     {
       num: "01",
@@ -30,12 +35,53 @@ export function HowToRegisterSection() {
     }
   ];
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // Bulletproof fromTo animations
+      gsap.fromTo(".register-header", 
+        { x: -40, opacity: 0 },
+        {
+          x: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".register-header",
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+
+      gsap.fromTo(".register-step-card", 
+        { y: 60, opacity: 0, scale: 0.95 },
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          stagger: 0.15,
+          duration: 0.8,
+          ease: "back.out(1.2)",
+          scrollTrigger: {
+            trigger: ".register-cards-grid",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans">
+    <section ref={containerRef} className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-left space-y-6 mb-16 max-w-3xl">
+        <div className="register-header text-left space-y-6 mb-16 max-w-3xl">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-brutal-black">
             Cara Mendaftar
           </h2>
@@ -43,11 +89,11 @@ export function HowToRegisterSection() {
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="register-cards-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, idx) => (
             <div
               key={idx}
-              className="bg-white border-4 border-brutal-black shadow-brutal p-6 flex flex-col justify-between text-left hover:translate-y-[-4px] hover:shadow-brutal-lg transition-all"
+              className="register-step-card bg-white border-4 border-brutal-black shadow-brutal p-6 flex flex-col justify-between text-left hover:translate-y-[-4px] hover:shadow-brutal-lg transition-all"
             >
               <div className="space-y-6">
                 {/* Number Badge */}
@@ -73,8 +119,6 @@ export function HowToRegisterSection() {
             </div>
           ))}
         </div>
-
-
 
       </div>
     </section>

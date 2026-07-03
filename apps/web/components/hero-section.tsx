@@ -1,8 +1,12 @@
 "use client";
 
+import { useRef, useEffect } from "react";
 import { ArrowRight, Star, Sparkles, Award, Play } from "lucide-react";
+import { gsap } from "gsap";
 
 export function HeroSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const handleScroll = (e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     const element = document.querySelector(href);
@@ -14,12 +18,33 @@ export function HeroSection() {
   const stickers = [
     { text: "Science Short Movie", color: "bg-brutal-blue text-white", rotate: "-rotate-2", icon: <Play className="w-4 h-4 fill-white" /> },
     { text: "Mobile Legend", color: "bg-brutal-purple text-white", rotate: "rotate-3", icon: <Star className="w-4 h-4 fill-white" /> },
-    { text: "Tari Tradisional", color: "bg-brutal-pink text-brutal-black", rotate: "-rotate-6 md:-rotate-3", icon: <Award className="w-4 h-4" /> },
+    { text: "Tari Tradisional", color: "bg-brutal-pink text-white", rotate: "-rotate-6 md:-rotate-3", icon: <Award className="w-4 h-4" /> },
     { text: "Vocal Group", color: "bg-brutal-yellow text-brutal-black", rotate: "rotate-6 md:rotate-2", icon: <Sparkles className="w-4 h-4" /> },
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Timeline for entrance animations using bulletproof fromTo
+      const tl = gsap.timeline({ defaults: { ease: "back.out(1.5)", duration: 0.8 } });
+
+      tl.fromTo(".hero-title", { y: 60, opacity: 0, scale: 0.9 }, { y: 0, opacity: 1, scale: 1 })
+        .fromTo(".hero-subtitle", { y: 30, opacity: 0 }, { y: 0, opacity: 1 }, "-=0.5")
+        .fromTo(".hero-desc", { y: 40, opacity: 0 }, { y: 0, opacity: 1, ease: "power2.out" }, "-=0.4")
+        .fromTo(".hero-badge-grid > div", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.1 }, "-=0.4")
+        .fromTo(".hero-ctas button", { y: 30, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.15 }, "-=0.3")
+        .fromTo(".hero-art-frame", { scale: 0.8, rotate: -15, opacity: 0 }, { scale: 1, rotate: -2, opacity: 1, duration: 1, ease: "elastic.out(1, 0.75)" }, "-=0.6")
+        .fromTo(".hero-sticker", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, stagger: 0.1, ease: "back.out(2)" }, "-=0.8");
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="home" className="relative pt-10 pb-20 border-b-4 border-brutal-black bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:32px_32px] bg-opacity-[0.04] overflow-hidden">
+    <section
+      ref={containerRef}
+      id="home"
+      className="relative pt-10 pb-20 border-b-4 border-brutal-black bg-[linear-gradient(to_right,#111111_1px,transparent_1px),linear-gradient(to_bottom,#111111_1px,transparent_1px)] bg-[size:32px_32px] bg-opacity-[0.04] overflow-hidden"
+    >
       {/* Abstract Brutalist Background Elements */}
       <div className="absolute top-20 right-10 w-32 h-32 bg-brutal-pink border-4 border-brutal-black rounded-full opacity-20 -z-10 animate-bounce duration-[4000ms]" />
       <div className="absolute bottom-10 left-10 w-40 h-40 bg-brutal-yellow border-4 border-brutal-black opacity-10 -z-10 rotate-12" />
@@ -28,27 +53,26 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Main Info */}
           <div className="lg:col-span-7 space-y-8 text-left">
-
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none text-brutal-black relative">
+              <h1 className="hero-title text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none text-brutal-black relative">
                 PORSENI
                 <span className="block text-brutal-blue drop-shadow-[3px_3px_0_#111111] mt-2">
                   AMLI 2026
                 </span>
               </h1>
-              <h2 className="text-xs sm:text-sm lg:text-base font-black text-brutal-pink uppercase mt-[6px] block">
+              <h2 className="hero-subtitle text-xs sm:text-sm lg:text-base font-black text-brutal-pink uppercase mt-[6px] block">
                 Satu Panggung, Satu Semangat MIPA.
               </h2>
             </div>
 
             {/* Description */}
-            <p className="text-lg font-medium border-3 border-brutal-black bg-white p-6 shadow-brutal leading-relaxed max-w-2xl">
+            <p className="hero-desc text-lg font-medium border-3 border-brutal-black bg-white p-6 shadow-brutal leading-relaxed max-w-2xl">
               Pekan Olahraga dan Seni Mahasiswa MIPA yang mempertemukan kreativitas, budaya, strategi, dan ekspresi mahasiswa MIPA se-Indonesia. Tahun ini, PORSENI AMLI menghadirkan kompetisi daring terbaik untuk mengukir sejarah kolaborasi nasional.
             </p>
 
             {/* Badge Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+            <div className="hero-badge-grid grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
               <div className="p-3 border-2 border-brutal-black bg-white shadow-brutal-sm font-bold text-center">
                 <span className="block text-xs text-neutral-500 uppercase">Format</span>
                 <span className="text-sm sm:text-base">Daring / Online</span>
@@ -64,12 +88,12 @@ export function HeroSection() {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+            <div className="hero-ctas flex flex-col sm:flex-row gap-4 pt-2">
               <button
                 onClick={(e) => handleScroll(e, "#lomba")}
                 className="flex items-center justify-center gap-2 px-8 py-4 bg-brutal-lime text-brutal-black font-extrabold text-lg border-3 border-brutal-black shadow-brutal hover:shadow-brutal-sm hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
               >
-                Lihat Cabang Lomba
+                Lihat Lomba
                 <ArrowRight className="w-5 h-5" />
               </button>
               <button
@@ -84,7 +108,7 @@ export function HeroSection() {
           {/* Sticker Visuals / Right Side */}
           <div className="lg:col-span-5 relative h-[450px] flex items-center justify-center">
             {/* Neo-Brutalist Art Frame */}
-            <div className="border-4 border-brutal-black bg-white p-4 shadow-brutal rotate-[-2deg] max-w-sm w-full relative z-10">
+            <div className="hero-art-frame border-4 border-brutal-black bg-white p-4 shadow-brutal rotate-[-2deg] max-w-sm w-full relative z-10">
               <div className="relative border-2 border-brutal-black overflow-hidden h-64 bg-neutral-100">
                 <img
                   src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?q=80&w=600&auto=format&fit=crop"
@@ -113,7 +137,7 @@ export function HeroSection() {
               return (
                 <div
                   key={idx}
-                  className={`${positions[idx]} ${sticker.color} ${sticker.rotate} p-3 border-2 border-brutal-black shadow-brutal flex items-center gap-1.5 font-black text-xs cursor-default hover:scale-105 transition-all`}
+                  className={`hero-sticker ${positions[idx]} ${sticker.color} ${sticker.rotate} p-3 border-2 border-brutal-black shadow-brutal flex items-center gap-1.5 font-black text-xs cursor-default hover:scale-105 transition-all`}
                 >
                   {sticker.icon}
                   {sticker.text}

@@ -1,13 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function FAQAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const faqs = [
-
     {
       q: "Apakah semua lomba dilaksanakan online?",
       a: "Ya, berdasarkan konsep kegiatan, seluruh cabang lomba dilaksanakan secara daring / online."
@@ -38,31 +40,71 @@ export function FAQAccordion() {
     }
   };
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      // Bulletproof fromTo animations
+      gsap.fromTo(".faq-header", 
+        { scale: 0.95, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".faq-header",
+            start: "top 85%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+
+      gsap.fromTo(".faq-item", 
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          stagger: 0.1,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".faq-list",
+            start: "top 80%",
+            toggleActions: "play none none none"
+          }
+        }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="faq" className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans">
+    <section ref={containerRef} id="faq" className="py-20 bg-brutal-bg border-b-4 border-brutal-black font-sans overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         
         {/* Header */}
-        <div className="text-center space-y-6 mb-16">
+        <div className="faq-header text-center space-y-6 mb-16">
           <div className="inline-flex p-3 bg-brutal-yellow border-2 border-brutal-black shadow-brutal-sm rotate-3 mb-2">
             <HelpCircle className="w-8 h-8 text-brutal-black" />
           </div>
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black uppercase tracking-tight text-brutal-black">
             Frequently Asked Questions
           </h2>
-          <p className="text-base sm:text-lg font-bold text-neutral-600 max-w-xl mx-auto">
+          <p className="text-base sm:text-lg font-bold text-neutral-600 max-w-xl mx-auto font-sans">
             Temukan jawaban cepat atas pertanyaan umum seputar pendaftaran dan pelaksanaan PORSENI AMLI 2026.
           </p>
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-4">
+        <div className="faq-list space-y-4">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={idx}
-                className="border-3 border-brutal-black bg-white shadow-brutal hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all"
+                className="faq-item border-3 border-brutal-black bg-white shadow-brutal hover:translate-x-[-1px] hover:translate-y-[-1px] transition-all"
               >
                 {/* Accordion Header */}
                 <button
