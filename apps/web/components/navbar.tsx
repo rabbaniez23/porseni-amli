@@ -15,6 +15,7 @@ export function Navbar() {
     { label: "Cabang Lomba", href: "#lomba" },
     { label: "Timeline", href: "#timeline" },
     { label: "FAQ", href: "#faq" },
+    { label: "Developer", href: "https://cv-monecruz.vercel.app/", external: true },
   ];
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -100,6 +101,19 @@ export function Navbar() {
           {/* Desktop Menu */}
           <nav className="hidden md:flex items-center gap-4 lg:gap-6 font-black text-sm select-none">
             {navItems.map((item) => {
+              if (item.external) {
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-3 py-1.5 border-2 border-transparent text-brutal-black hover:border-brutal-black hover:bg-neutral-100 transition-all flex items-center gap-1.5"
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
               const isActive = activeItem === item.href;
               return (
                 <a
@@ -156,6 +170,22 @@ export function Navbar() {
         <div className="md:hidden border-t-4 border-brutal-black bg-brutal-bg font-bold animate-in fade-in slide-in-from-top duration-200">
           <div className="px-4 pt-4 pb-6 space-y-4">
             {navItems.map((item) => {
+              if (item.external) {
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-3 py-2.5 text-lg border-2 border-brutal-black bg-white text-brutal-black shadow-brutal-sm transition-all hover:bg-neutral-50"
+                  >
+                    <span className="flex items-center gap-2">
+                      <span className="text-neutral-300">○</span>
+                      {item.label}
+                    </span>
+                  </a>
+                );
+              }
               const isActive = activeItem === item.href;
               return (
                 <a

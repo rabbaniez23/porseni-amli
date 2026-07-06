@@ -67,6 +67,16 @@ export function Footer() {
                   FAQ
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://cv-monecruz.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-brutal-yellow text-neutral-400 transition-colors"
+                >
+                  Developer ↗
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -95,9 +105,23 @@ export function Footer() {
 
         {/* Bottom Credits */}
         <div className="flex flex-col sm:flex-row items-center justify-between pt-8 text-neutral-500 font-bold text-xs">
-          <div className="flex items-center gap-2 mb-4 sm:mb-0">
-            <Star className="w-4 h-4 fill-neutral-500 text-neutral-500" />
-            <span>&copy; 2026 PORSENI AMLI. All rights reserved.</span>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-4 sm:mb-0 text-left">
+            <div className="flex items-center gap-2">
+              <Star className="w-4 h-4 fill-neutral-500 text-neutral-500" />
+              <span>&copy; 2026 PORSENI AMLI. All rights reserved.</span>
+            </div>
+            <span className="hidden sm:inline text-neutral-700">|</span>
+            <span>
+              Created by{" "}
+              <a
+                href="https://cv-monecruz.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-brutal-yellow hover:text-white transition-colors underline decoration-dashed underline-offset-4"
+              >
+                Developer
+              </a>
+            </span>
           </div>
 
           <button
