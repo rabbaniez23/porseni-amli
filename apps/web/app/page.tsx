@@ -24,7 +24,7 @@ export default function Page() {
       // Initialize AOS for lightweight CSS scroll animations
       AOS.init({
         duration: 800,
-        once: false,
+        once: true,
         easing: "ease-out-back",
       });
     }
