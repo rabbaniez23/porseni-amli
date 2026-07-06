@@ -79,7 +79,7 @@ export function HeroSection({ isPageLoading }: HeroSectionProps) {
           <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="hero-title text-4xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none text-brutal-black relative min-h-[100px] sm:min-h-[140px] lg:min-h-[160px] select-none">
+              <h1 className="hero-title text-5xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight leading-none text-brutal-black relative min-h-[120px] sm:min-h-[140px] lg:min-h-[180px] select-none">
                 <span className="hero-part1">{part1Text}</span>
                 <span className="hero-part2 text-brutal-blue block drop-shadow-[3px_3px_0_#111111] mt-2">
                   {part2Text}
