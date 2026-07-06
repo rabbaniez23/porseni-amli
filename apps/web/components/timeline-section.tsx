@@ -122,7 +122,7 @@ export function TimelineSection() {
                   {/* Card Block */}
                   <div className="timeline-card-wrapper w-full md:w-1/2 pl-12 md:pl-0 md:px-8">
                     <div
-                      data-aos={isEven ? "fade-left" : "fade-right"}
+                      data-aos="fade-up"
                       className={`${event.color} border-4 border-brutal-black shadow-brutal p-6 md:p-8 hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-brutal-lg hover:-rotate-1 transition-all text-left relative`}
                     >
                       {/* Date Badge */}

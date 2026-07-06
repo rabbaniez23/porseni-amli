@@ -23,9 +23,10 @@ export default function Page() {
     if (!isLoading) {
       // Initialize AOS for lightweight CSS scroll animations
       AOS.init({
-        duration: 800,
+        duration: 400,
         once: true,
-        easing: "ease-out-back",
+        easing: "ease-out",
+        disable: "mobile",
       });
     }
   }, [isLoading]);
