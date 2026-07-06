@@ -76,43 +76,43 @@ export function HeroSection({ isPageLoading }: HeroSectionProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Main Info */}
-          <div className="lg:col-span-7 space-y-8 text-left">
+          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="hero-title text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none text-brutal-black relative min-h-[90px] sm:min-h-[140px] lg:min-h-[160px] select-none">
+              <h1 className="hero-title text-4xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight leading-none text-brutal-black relative min-h-[100px] sm:min-h-[140px] lg:min-h-[160px] select-none">
                 <span className="hero-part1">{part1Text}</span>
                 <span className="hero-part2 text-brutal-blue block drop-shadow-[3px_3px_0_#111111] mt-2">
                   {part2Text}
                 </span>
               </h1>
-              <h2 className="hero-subtitle text-xs sm:text-sm lg:text-base font-black text-brutal-pink uppercase mt-[6px] block">
+              <h2 className="hero-subtitle text-sm sm:text-sm lg:text-base font-black text-brutal-pink uppercase mt-[6px] block">
                 Satu Panggung, Satu Semangat MIPA.
               </h2>
             </div>
 
             {/* Description */}
-            <p className="hero-desc text-lg font-medium border-3 border-brutal-black bg-white p-6 shadow-brutal leading-relaxed max-w-2xl">
+            <p className="hero-desc text-lg font-medium border-3 border-brutal-black bg-white p-6 shadow-brutal leading-relaxed max-w-2xl mx-auto lg:mx-0">
               Pekan Olahraga dan Seni Mahasiswa MIPA yang mempertemukan kreativitas, budaya, strategi, dan ekspresi mahasiswa MIPA se-Indonesia. Tahun ini, PORSENI AMLI menghadirkan kompetisi daring terbaik untuk mengukir sejarah kolaborasi nasional.
             </p>
 
             {/* Badge Grid */}
-            <div className="hero-badge-grid grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
-              <div className="p-3 border-2 border-brutal-black bg-white shadow-brutal-sm font-bold text-center">
-                <span className="block text-xs text-neutral-500 uppercase">Format</span>
-                <span className="text-sm sm:text-base">Daring / Online</span>
+            <div className="hero-badge-grid grid grid-cols-3 gap-2 sm:gap-3 max-w-2xl mx-auto lg:mx-0">
+              <div className="p-2 sm:p-3 border-2 border-brutal-black bg-white shadow-brutal-sm font-bold text-center">
+                <span className="block text-[9px] sm:text-xs text-neutral-500 uppercase">Format</span>
+                <span className="text-[10px] sm:text-sm md:text-base">Daring / Online</span>
               </div>
-              <div className="p-3 border-2 border-brutal-black bg-white shadow-brutal-sm font-bold text-center">
-                <span className="block text-xs text-neutral-500 uppercase">Pelaksanaan</span>
-                <span className="text-sm sm:text-base">Agustus 2026</span>
+              <div className="p-2 sm:p-3 border-2 border-brutal-black bg-white shadow-brutal-sm font-bold text-center">
+                <span className="block text-[9px] sm:text-xs text-neutral-500 uppercase">Pelaksanaan</span>
+                <span className="text-[10px] sm:text-sm md:text-base">Agustus 2026</span>
               </div>
-              <div className="p-3 border-2 border-brutal-black bg-white shadow-brutal-sm font-bold text-center">
-                <span className="block text-xs text-neutral-500 uppercase">Cabang</span>
-                <span className="text-sm sm:text-base">4 Bidang Lomba</span>
+              <div className="p-2 sm:p-3 border-2 border-brutal-black bg-white shadow-brutal-sm font-bold text-center">
+                <span className="block text-[9px] sm:text-xs text-neutral-500 uppercase">Cabang</span>
+                <span className="text-[10px] sm:text-sm md:text-base">4 Bidang Lomba</span>
               </div>
             </div>
 
             {/* CTAs */}
-            <div className="hero-ctas flex flex-col sm:flex-row gap-4 pt-2">
+            <div className="hero-ctas flex flex-col sm:flex-row gap-4 pt-2 justify-center lg:justify-start">
               <button
                 onClick={(e) => handleScroll(e, "#lomba")}
                 className="flex items-center justify-center gap-2 px-8 py-4 bg-brutal-lime text-brutal-black font-extrabold text-lg border-3 border-brutal-black shadow-brutal hover:shadow-brutal-sm hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
