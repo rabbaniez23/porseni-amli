@@ -135,7 +135,7 @@ export function HeroSection({ isPageLoading }: HeroSectionProps) {
             <div className="hero-art-frame border-4 border-brutal-black bg-white p-4 shadow-brutal rotate-[-2deg] max-w-sm w-full relative z-10 hover:rotate-0 transition-transform duration-300">
               <div className="relative border-2 border-brutal-black overflow-hidden h-64 bg-neutral-100">
                 <img
-                  src="https://images.unsplash.com/photo-1536147116438-62679a5e01f2?q=80&w=600&auto=format&fit=crop"
+                  src="/assets/Tarian%20Indonesia.jpg"
                   alt="Tari Tradisional PORSENI"
                   className="w-full h-full object-cover"
                 />

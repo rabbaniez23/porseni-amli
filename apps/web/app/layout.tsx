@@ -24,6 +24,9 @@ export const metadata = {
   title: "PORSENI AMLI 2026 | FPMIPA UPI",
   description: "Landing page resmi informasi cabang lomba PORSENI AMLI 2026 hosted by FPMIPA Universitas Pendidikan Indonesia.",
   keywords: "PORSENI AMLI 2026, FPMIPA UPI, UPI, Science Short Movie, Mobile Legend, Tari Tradisional, Vocal Group, Lomba Mahasiswa MIPA",
+  icons: {
+    icon: "/assets/logo.jpeg",
+  },
 }
 
 export default function RootLayout({
