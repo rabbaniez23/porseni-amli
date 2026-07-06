@@ -3,10 +3,10 @@
 import { Film, Gamepad, Award, Music, ArrowUpRight, HelpCircle } from "lucide-react";
 
 export const registrationLinks = {
-  scienceShortMovie: "https://forms.gle/ISI_LINK_GOOGLE_FORM_SCIENCE_SHORT_MOVIE",
-  mobileLegend: "https://forms.gle/ISI_LINK_GOOGLE_FORM_MOBILE_LEGEND",
-  tariTradisional: "https://forms.gle/ISI_LINK_GOOGLE_FORM_TARI_TRADISIONAL",
-  vocalGroup: "https://forms.gle/ISI_LINK_GOOGLE_FORM_VOCAL_GROUP",
+  scienceShortMovie: "https://docs.google.com/forms/d/e/1FAIpQLSfsuMDhgE4TJQQySnzFq3xmvadS1_i05olq64RQvq2JBAWiOw/viewform",
+  mobileLegend: "https://docs.google.com/forms/d/e/1FAIpQLSfsuMDhgE4TJQQySnzFq3xmvadS1_i05olq64RQvq2JBAWiOw/viewform",
+  tariTradisional: "https://docs.google.com/forms/d/e/1FAIpQLSfsuMDhgE4TJQQySnzFq3xmvadS1_i05olq64RQvq2JBAWiOw/viewform",
+  vocalGroup: "https://docs.google.com/forms/d/e/1FAIpQLSfsuMDhgE4TJQQySnzFq3xmvadS1_i05olq64RQvq2JBAWiOw/viewform",
 };
 
 export function CompetitionOverview() {
