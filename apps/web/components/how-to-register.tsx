@@ -50,33 +50,33 @@ export function HowToRegisterSection() {
         </div>
 
         {/* Steps Grid */}
-        <div className="register-cards-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="register-cards-grid grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
           {steps.map((step, idx) => (
             <div
               key={idx}
               data-aos="fade-up"
               data-aos-delay={step.delay}
-              className="register-step-card bg-white border-4 border-brutal-black shadow-brutal p-6 flex flex-col justify-between text-left hover:translate-y-[-4px] hover:shadow-brutal-lg transition-all"
+              className="register-step-card bg-white border-4 border-brutal-black shadow-brutal p-3 sm:p-6 flex flex-col justify-between text-left hover:translate-y-[-4px] hover:shadow-brutal-lg transition-all"
             >
-              <div className="space-y-6">
+              <div className="space-y-3 sm:space-y-6">
                 {/* Number Badge */}
-                <div className={`w-12 h-12 flex items-center justify-center border-3 border-brutal-black font-black text-xl shadow-brutal-sm rotate-[-4deg] ${step.color}`}>
+                <div className={`w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center border-3 border-brutal-black font-black text-sm sm:text-xl shadow-brutal-sm rotate-[-4deg] ${step.color}`}>
                   {step.num}
                 </div>
                 
                 <div className="space-y-2">
-                  <h3 className="text-xl font-extrabold uppercase tracking-tight text-brutal-black">
+                  <h3 className="text-sm sm:text-xl font-extrabold uppercase tracking-tight text-brutal-black">
                     {step.title}
                   </h3>
-                  <p className="text-sm font-bold text-neutral-600 leading-relaxed">
+                  <p className="text-[11px] sm:text-sm font-bold text-neutral-600 leading-relaxed">
                     {step.desc}
                   </p>
                 </div>
               </div>
 
               {/* Decorative line */}
-              <div className="mt-8 pt-4 border-t-2 border-dashed border-neutral-300 flex items-center gap-2 text-xs font-bold text-neutral-400">
-                <CheckSquare className="w-4 h-4" />
+              <div className="mt-4 sm:mt-8 pt-2 sm:pt-4 border-t-2 border-dashed border-neutral-300 flex items-center gap-1 sm:gap-2 text-[9px] sm:text-xs font-bold text-neutral-400">
+                <CheckSquare className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span>LANGKAH {step.num}</span>
               </div>
             </div>
