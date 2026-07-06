@@ -135,11 +135,6 @@ export function Navbar() {
 
           {/* Right Section: Game Status & CTA */}
           <div className="hidden md:flex items-center gap-4 select-none">
-            {/* Level status indicator */}
-            <div className="hidden lg:flex items-center gap-1 px-3 py-1.5 border-2 border-brutal-black bg-brutal-purple text-white shadow-brutal-sm font-mono text-xs font-black rotate-[-1deg]">
-              <span>LVL: 01</span>
-            </div>
-
             {/* Retro CTA Button (Magnetic via GSAP) */}
             <a
               ref={buttonRef}
