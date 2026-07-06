@@ -1,18 +1,18 @@
-import { Press_Start_2P, Pixelify_Sans, Geist_Mono } from "next/font/google"
+import { Russo_One, Chakra_Petch, Geist_Mono } from "next/font/google"
 import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@workspace/ui/lib/utils";
 
-const pressStart2P = Press_Start_2P({
+const russoOne = Russo_One({
   subsets: ["latin"],
   variable: "--font-heading",
   weight: ["400"],
 });
 
-const pixelifySans = Pixelify_Sans({
+const chakraPetch = Chakra_Petch({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const fontMono = Geist_Mono({
@@ -35,7 +35,7 @@ export default function RootLayout({
     <html
       lang="id"
       suppressHydrationWarning
-      className={cn("antialiased scroll-smooth", fontMono.variable, pixelifySans.variable, pressStart2P.variable)}
+      className={cn("antialiased scroll-smooth", fontMono.variable, chakraPetch.variable, russoOne.variable)}
     >
       <body className="bg-brutal-bg text-brutal-black min-h-screen">
         <ThemeProvider>{children}</ThemeProvider>

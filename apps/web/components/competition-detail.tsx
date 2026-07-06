@@ -18,26 +18,30 @@ export function CompetitionDetail() {
       inactiveColor: "bg-white text-brutal-black hover:bg-neutral-100",
       content: {
         title: "Science Short Movie",
-        subtitle: "Sains bertemu sinema. Ceritakan konsep MIPA dengan visual yang kreatif, ringan, dan mudah dipahami.",
+        subtitle: "Sains bertemu sinema. Ceritakan konsep MIPA dengan visual fiksi atau semi-dokumenter yang kreatif, edukatif, dan menarik.",
         info: [
-          { label: "Jumlah Peserta", val: "1–5 orang per tim" },
-          { label: "Durasi Video", val: "3–5 menit" },
-          { label: "Tema Utama", val: "Fenomena atau konsep MIPA dalam kehidupan" },
-          { label: "Format File", val: "MP4 (Landscape 16:9, min 720p)" },
-          { label: "Metode Kirim", val: "Diunggah sebelum hari H untuk ditayangkan online" },
+          { label: "Jumlah Peserta", val: "3–7 orang per tim produksi" },
+          { label: "Durasi Video", val: "5–10 menit (termasuk opening & credit title)" },
+          { label: "Tema Utama", val: "Inovasi dan Aplikasi Sains dalam Mengatasi Tantangan Masa Depan" },
+          { label: "Format File", val: "MP4 atau MOV (Landscape 16:9, min 1080p Full HD)" },
+          { label: "Metode Kirim", val: "Diunggah ke Google Drive masing-masing dan mengirimkan link-nya" },
         ],
         topics: [
-          "Matematika dalam kehidupan sehari-hari",
-          "Fenomena alam dari perspektif sains",
-          "Biologi makhluk hidup di sekitar kampus",
-          "Fisika di balik teknologi populer",
-          "Kimia dalam makanan dan lingkungan"
+          "Matematika dalam kehidupan sehari-hari (pola, probabilitas, geometri di sekitar kita)",
+          "Fenomena alam dari perspektif sains (cuaca ekstrem, gempa bumi, siklus air)",
+          "Biologi makhluk hidup di sekitar kampus (ekosistem urban, keanekaragaman hayati lokal)",
+          "Fisika di balik teknologi populer (smartphone, drone, panel surya, MRI)",
+          "Kimia dalam makanan dan lingkungan (fermentasi, polutan, pewarna alami)",
+          "Sains komputer dan algoritma dalam kehidupan nyata (AI, enkripsi, rekomendasi digital)",
+          "Inovasi dan solusi saintifik untuk tantangan lokal atau global"
         ],
         rules: [
-          "Boleh menggunakan narasi, teks, animasi, wawancara, atau gabungan.",
-          "Wajib menyertakan sinopsis maksimal 150 kata.",
-          "Tidak mengandung konten SARA, kekerasan, atau pelanggaran hak cipta.",
-          "Akurasi sains menjadi syarat kelayakan, tetapi pemenang utama ditentukan oleh kekuatan sinematik dan storytelling."
+          "Karya merupakan film pendek bergenre fiksi (drama, komedi, sci-fi, dll.) atau semi-dokumenter. Tidak diperkenankan membuat video full-animation.",
+          "Cerita wajib memasukkan minimal satu konsep atau prinsip MIPA (Matematika, Ilmu Pengetahuan Alam, atau Komputer) yang menjadi kunci alur cerita (plot device).",
+          "Pada 10 (sepuluh) detik pertama wajib menampilkan informasi: Judul film, Nama tim produksi, Nama dan asal universitas.",
+          "Karya wajib menyertakan takarir (subtitle) berbahasa Indonesia yang baik dan benar di sepanjang durasi film.",
+          "Audio dan dialog harus jelas, dengan mixing suara (musik latar, efek suara, dialog) yang seimbang.",
+          "Karya harus orisinal, belum pernah dipublikasikan secara komersial, belum pernah menang kompetisi serupa, dan bebas SARA, pornografi, kekerasan berlebihan, atau pelanggaran hak cipta."
         ],
         criteria: [
           { label: "Sinematografi & Visual", val: "30%" },
@@ -67,14 +71,14 @@ export function CompetitionDetail() {
           { label: "Perangkat", val: "Smartphone / Tablet Pribadi" },
         ],
         topics: [
-          "Server: Asia / Indonesia",
-          "Mode: Classic / Tournament Draft Pick",
-          "Dilarang menggunakan emulator",
-          "Koneksi internet ditanggung peserta"
+          "Pertandingan dilaksanakan via room custom MLBB",
+          "Mode room: Classic Draft Pick (penyisihan), Tournament Draft Pick (semifinal & final)",
+          "Server: Asia / Indonesia (koneksi tanggung jawab masing-masing)",
+          "Dilarang menggunakan emulator"
         ],
         rules: [
-          "Akun pribadi masing-masing pemain (tidak boleh dipinjamkan).",
-          "Pertandingan dilakukan melalui custom room, panitia membagikan Room ID dan Password.",
+          "Peserta wajib masuk ke dalam zoom meeting yang disediakan panitia dengan mengaktifkan kamera selama tanding.",
+          "Panitia membagikan Room ID & Password sebelum pertandingan.",
           "Jadwal pertandingan disampaikan H-3. Keterlambatan lebih dari 10 menit dinyatakan WO.",
           "Keputusan wasit/panitia bersifat mutlak dan final."
         ],
@@ -104,27 +108,27 @@ export function CompetitionDetail() {
         info: [
           { label: "Jumlah Peserta", val: "3–6 penari per tim" },
           { label: "Kuota Kampus", val: "Maksimal 1 tim per universitas" },
-          { label: "Durasi Video", val: "4–8 menit" },
-          { label: "Format File", val: "MP4 (Landscape 16:9, min 720p)" },
-          { label: "Penilaian", val: "Ditayangkan dan dinilai live secara daring" },
+          { label: "Durasi Video", val: "Minimal 4 menit dan maksimal 8 menit" },
+          { label: "Format File", val: "MP4 (Landscape 16:9, resolusi minimal 1080p)" },
+          { label: "Penilaian", val: "Ditayangkan dan dinilai secara daring" },
         ],
         topics: [
-          "Tarian harus merupakan tari tradisional Indonesia (bukan kreasi modern/kontemporer)",
+          "Tarian harus merupakan Tari Tradisional Indonesia (bukan kreasi modern/kontemporer)",
           "Asal daerah tari harus dapat diverifikasi dengan jelas",
-          "Wajib melampirkan deskripsi singkat mengenai asal-usul dan makna tarian"
+          "Wajib menyertakan deskripsi singkat karya yang memuat: Nama tari & asal daerah, serta Makna & pakem gerak dasar tarian"
         ],
         rules: [
-          "Kostum tradisional sesuai dengan tarian yang dibawakan.",
-          "Latar belakang pengambilan video bernuansa netral atau bertema kebudayaan.",
-          "Musik pengiring diperbolehkan menggunakan rekaman instrumen.",
-          "Audio dan visual video harus jelas tanpa distorsi berat."
+          "Video diambil menggunakan satu kamera statis (fixed camera) dari arah depan-tengah panggung (front-center view). Wajib One-Take Shot tanpa pemotongan adegan atau transisi.",
+          "Peserta menggunakan kostum tradisional yang sesuai dengan tarian yang dibawakan serta tetap menjaga kesopanan.",
+          "Lokasi atau latar belakang video diupayakan netral atau bernuansa budaya.",
+          "Diperbolehkan menggunakan musik rekaman (backing track). File audio asli dapat ditempelkan (dubbing) langsung pada video agar suara jernih."
         ],
         criteria: [
-          { label: "Teknik & Keakuratan Gerak", val: "30%" },
-          { label: "Ekspresi & Penghayatan", val: "25%" },
-          { label: "Kekompakan & Sinkronisasi", val: "20%" },
+          { label: "Teknik & keakuratan Gerak", val: "20%" },
+          { label: "Ekspresi & Penghayatan", val: "30%" },
+          { label: "Kekompakan Gerak", val: "30%" },
           { label: "Kostum & Tata Rias", val: "15%" },
-          { label: "Kualitas Video & Presentasi", val: "10%" }
+          { label: "Kualitas Video & presentasi", val: "5%" }
         ],
         link: registrationLinks.tariTradisional
       }
@@ -138,31 +142,33 @@ export function CompetitionDetail() {
       inactiveColor: "bg-white text-brutal-black hover:bg-neutral-100",
       content: {
         title: "Vocal Group",
-        subtitle: "Harmoni suara, kreativitas aransemen, dan penghayatan lagu nasional dalam satu penampilan.",
+        subtitle: "Harmoni suara, kreativitas aransemen, dan penghayatan lagu nasional/populer dalam satu penampilan.",
         info: [
-          { label: "Jumlah Peserta", val: "3–6 orang per tim" },
+          { label: "Jumlah Peserta", val: "5–12 orang per tim (termasuk pemusik/pengiring)" },
           { label: "Kuota Kampus", val: "Maksimal 1 tim per universitas" },
-          { label: "Durasi Video", val: "4–7 menit" },
-          { label: "Format File", val: "MP4 (Landscape 16:9, min 720p)" },
+          { label: "Durasi Video", val: "Maksimal 7 menit dengan 10 detik pertama menampilkan nama tim dan asal kampus" },
+          { label: "Format File", val: "MP4 atau MOV (Landscape 16:9, resolusi 720p atau 1080p Full HD)" },
           { label: "Penilaian", val: "Ditayangkan dan dinilai secara daring" },
         ],
         topics: [
-          "Lagu Wajib (Pilih salah satu): Bagimu Negeri, Rayuan Pulau Kelapa, Tanah Airku",
-          "Lagu Pilihan (Pilih salah satu): Dari Sabang Sampai Merauke, Ibu Pertiwi, Satu Nusa Satu Bangsa",
-          "Musik pengiring diperbolehkan (live instrumen atau minus-one)"
+          "Peserta membawakan salah satu lagu pilihan berikut:",
+          "Zamrud Khatulistiwa - Chrisye",
+          "Bendera - Cokelat",
+          "Rumah Kita - God Bless",
+          "Indonesia Jaya - Harvey Malaiholo",
+          "Aransemen bebas dengan pembagian suara minimal 2 suara (misal: Sopran-Alto / Tenor-Bass). Boleh live instrumen atau minus-one."
         ],
         rules: [
-          "Anggota tim menyanyi secara berkelompok/vocal group.",
-          "Kostum seragam tim, rapi, dan representatif.",
-          "Latar pengambilan video rapi, netral, dan tidak mengganggu visual.",
-          "Kualitas rekaman audio harus jelas, vokal terdengar seimbang dan tidak pecah."
+          "Video wajib direkam dalam satu kali pengambilan gambar secara langsung (one-take live recording). Tidak diperkenankan melakukan audio mixing.",
+          "Kamera dalam posisi diam (statis) dan memperlihatkan seluruh anggota grup dengan jelas.",
+          "Audio harus terdengar jelas, seimbang (balance antar suara), dan tidak pecah.",
+          "Peserta merupakan mahasiswa aktif FMIPA/FPMIPA universitas anggota AMLI. Anggota tidak boleh terdaftar di dua kelompok berbeda."
         ],
         criteria: [
-          { label: "Intonasi & Keselarasan", val: "30%" },
-          { label: "Ekspresi & Penghayatan", val: "25%" },
-          { label: "Aransemen & Kreativitas", val: "25%" },
-          { label: "Kerapian & Kekompakan", val: "15%" },
-          { label: "Kualitas Video & Audio", val: "5%" }
+          { label: "Materi Vokal & Teknik", val: "35%" },
+          { label: "Aransemen & Harmonisasi", val: "35%" },
+          { label: "Interpretasi Artistik", val: "25%" },
+          { label: "Kualitas Audiovisual", val: "5%" }
         ],
         link: registrationLinks.vocalGroup
       }
