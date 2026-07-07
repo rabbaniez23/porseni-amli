@@ -5,75 +5,84 @@ import { Calendar, AlertCircle } from "lucide-react";
 export function TimelineSection() {
   const events = [
     {
-      date: "Juni 2026",
-      title: "Persiapan & Keputusan",
+      date: "7 Juli 2026 – Selesai",
+      title: "Pendaftaran Lomba",
       details: [
-        "Rapat WD AMLI & SK Panitia",
-        "Penyusunan panduan teknis",
-        "Pengumuman & buka pendaftaran"
+        "Pendaftaran peserta dibuka secara resmi",
+        "Konfirmasi keikutsertaan melalui formulir pendaftaran"
       ],
       color: "bg-brutal-blue text-white",
       badgeColor: "bg-brutal-yellow text-brutal-black"
     },
     {
-      date: "1–14 Juli 2026",
-      title: "Pendaftaran Peserta",
+      date: "7 Juli 2026",
+      title: "Sosialisasi & Technical Meeting",
       details: [
-        "Universitas mendaftarkan tim",
-        "Konfirmasi keikutsertaan melalui Google Form"
+        "Dilaksanakan secara daring / online",
+        "Penjelasan teknis lomba & sesi tanya jawab"
       ],
       color: "bg-brutal-purple text-white",
       badgeColor: "bg-brutal-lime text-brutal-black"
     },
     {
-      date: "16 Juli 2026",
-      title: "Technical Meeting",
+      date: "8–31 Juli 2026",
+      title: "Masa Produksi Video",
       details: [
-        "Dilaksanakan secara daring",
-        "Penjelasan teknis lomba & tanya jawab"
+        "Masa pengerjaan karya lomba berbasis video",
+        "Latihan, rekaman, & proses editing mandiri"
       ],
       color: "bg-brutal-pink text-white",
       badgeColor: "bg-brutal-bg text-brutal-black"
     },
     {
-      date: "16–31 Juli 2026",
-      title: "Masa Produksi Video",
+      date: "1 Agustus 2026",
+      title: "Submit & Deadline Video",
       details: [
-        "Untuk movie, tari, & vocal group",
-        "Latihan, rekaman, & editing mandiri"
+        "Batas akhir pengumpulan file video karya",
+        "Keterlambatan pengiriman tidak ditoleransi"
       ],
       color: "bg-brutal-yellow text-brutal-black",
       badgeColor: "bg-brutal-black text-white"
     },
     {
-      date: "3 Agustus 2026",
-      title: "Deadline Video",
+      date: "8 Agustus 2026",
+      title: "Pembukaan Resmi",
       details: [
-        "Batas akhir submit file video",
-        "Keterlambatan tidak ditoleransi"
+        "Upacara pembukaan resmi PORSENI AMLI 2026",
+        "Diikuti oleh seluruh delegasi universitas"
       ],
       color: "bg-brutal-lime text-brutal-black",
       badgeColor: "bg-brutal-blue text-white"
     },
     {
-      date: "10–15 Agustus 2026",
-      title: "Pelaksanaan Lomba",
+      date: "10–12 Agustus 2026",
+      title: "Masa Lomba",
       details: [
-        "Pembukaan resmi & turnamen MLBB",
-        "Penayangan video & pengumuman juara"
+        "Pelaksanaan perlombaan dan penilaian oleh juri",
+        "Pertandingan babak penyisihan cabang lomba"
       ],
       color: "bg-brutal-blue text-white",
       badgeColor: "bg-brutal-yellow text-brutal-black"
     },
     {
-      date: "16–17 Agustus 2026",
-      title: "Apresiasi & Sertifikat",
+      date: "15 Agustus 2026",
+      title: "Grand Final & Penutupan",
       details: [
-        "Distribusi sertifikat digital peserta",
-        "Pemrosesan apresiasi pemenang"
+        "Grand Final Mobile Legends & penutupan resmi",
+        "Pengumuman pemenang & juara umum PORSENI AMLI 2026"
       ],
       color: "bg-brutal-purple text-white",
       badgeColor: "bg-brutal-lime text-brutal-black"
+    },
+    {
+      date: "16–17 Agustus 2026",
+      title: "Dokumentasi & Sertifikat",
+      details: [
+        "Pengiriman dokumentasi kegiatan kepada peserta",
+        "Distribusi sertifikat penghargaan dan keikutsertaan digital"
+      ],
+      color: "bg-brutal-pink text-white",
+      badgeColor: "bg-brutal-bg text-brutal-black"
     }
   ];
 
