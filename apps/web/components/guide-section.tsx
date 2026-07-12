@@ -1,6 +1,7 @@
 "use client";
 
 import { FileText, Download, Image as ImageIcon, ExternalLink, BookOpen, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
 
 export function GuideSection() {
   const guidePoints = [
@@ -55,10 +56,12 @@ export function GuideSection() {
               </div>
               
               <div className="relative border-2 border-brutal-black overflow-hidden aspect-[3/4] bg-neutral-100">
-                <img
+                <Image
                   src="/assets/poster.jpeg"
                   alt="Poster Resmi PORSENI AMLI 2026"
-                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 384px"
+                  className="object-cover group-hover:scale-102 transition-transform duration-300"
                 />
               </div>
               <div className="mt-4 font-black text-xs uppercase text-neutral-800 flex justify-between items-center">

@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Menu, X, Gamepad, Play, Circle } from "lucide-react";
 import { gsap } from "gsap";
+import Image from "next/image";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,10 +81,12 @@ export function Navbar() {
               onClick={(e) => handleScroll(e, "#home")}
               className="text-lg sm:text-xl md:text-2xl font-black tracking-tighter hover:text-brutal-blue transition-colors flex items-center gap-2 select-none"
             >
-              <img
+              <Image
                 src="/assets/logo-upi.png"
                 alt="Logo UPI"
-                className="w-8 h-8 object-contain"
+                width={32}
+                height={32}
+                className="object-contain"
               />
               PORSENI AMLI 2026
             </a>
