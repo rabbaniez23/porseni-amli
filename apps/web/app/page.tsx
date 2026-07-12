@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import { HeroSection } from "@/components/hero-section";
 import { InfoStrip } from "@/components/info-strip";
 import { AboutSection } from "@/components/about-section";
+import { GuideSection } from "@/components/guide-section";
 import { CompetitionOverview } from "@/components/competition-overview";
 import { CompetitionDetail } from "@/components/competition-detail";
 import { TimelineSection } from "@/components/timeline-section";
@@ -43,6 +44,7 @@ export default function Page() {
           <HeroSection isPageLoading={isLoading} />
           <InfoStrip />
           <AboutSection />
+          <GuideSection />
           <CompetitionOverview />
           <CompetitionDetail />
           <TimelineSection />

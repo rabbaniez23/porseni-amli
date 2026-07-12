@@ -5,7 +5,7 @@ import { Calendar, AlertCircle } from "lucide-react";
 export function TimelineSection() {
   const events = [
     {
-      date: "7 Juli 2026 – Selesai",
+      date: "14 Juli 2026 – Selesai",
       title: "Pendaftaran Lomba",
       details: [
         "Pendaftaran peserta dibuka secara resmi",
@@ -15,7 +15,7 @@ export function TimelineSection() {
       badgeColor: "bg-brutal-yellow text-brutal-black"
     },
     {
-      date: "7 Juli 2026",
+      date: "14 Juli 2026",
       title: "Sosialisasi & Technical Meeting",
       details: [
         "Dilaksanakan secara daring / online",
